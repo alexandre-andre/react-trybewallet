@@ -1,0 +1,12 @@
+.container_guides {
+  background-color: rgba(0, 0, 0, 0.768);
+  border: 3px solid blue;
+  color: white;
+  padding: 10px 0;
+}
+
+.align_center_between {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}

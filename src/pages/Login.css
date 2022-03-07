@@ -1,0 +1,60 @@
+body {
+  background-color: black;
+  font-size: 16px;
+}
+
+.container_login {
+  background-color: rgb(53, 54, 55);
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 5% 0;
+  width: 50%;
+}
+
+.container_choice {
+  background-color: black;
+  border: 3px solid blue;
+  color: white;
+  padding: 10px 0;
+}
+
+.form_login {
+  align-content: center;
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: space-between;
+}
+
+.align_center_around {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button_entrar {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  padding: 8px;
+}
+
+.button_entrar:disabled {
+  background-color: rgba(255, 0, 0, 0.494);
+  cursor: not-allowed;
+}
+
+.input_login {
+  margin-bottom: 3px;
+  padding: 6px;
+  text-align: center;
+}
+
+select:hover , option:hover {
+  cursor: pointer;
+}
+
+p {
+  color: aliceblue;
+}

@@ -1,0 +1,13 @@
+.header {
+  align-items: center;
+  background-color: black;
+  border: 2px red solid;
+  color: rgb(83, 177, 206);
+  display: flex;
+  font-size: large;
+  justify-content: space-around;
+}
+
+img {
+  height: 8vh;
+}
