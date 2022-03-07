@@ -6,6 +6,10 @@ import './Header.css';
 class Header extends React.Component {
   render() {
     const { email, expenses } = this.props;
+    const expense = expenses.length > 0 ? expenses : 0;
+    const formatedExpenseToBRL = expense.toLocaleString(
+      'pt-br', { style: 'currency', currency: 'BRL' },
+    );
 
     return (
       <header className="header">
@@ -13,12 +17,15 @@ class Header extends React.Component {
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN-YjkIXR-arrSQ-qTvJCRLNb6CUpUyl9hlQ&usqp=CAU"
           alt="myWallet"
         />
-        <span>
+        <h4 data-testid="email-field">
           { `Email: ${email}` }
-        </span>
-        <span>
-          { `Despesa Total: R$ ${expenses} BRL`}
-        </span>
+        </h4>
+        <h4 data-testid="total-field">
+          { `Despesa Total: R$ ${formatedExpenseToBRL} `}
+          <span data-testid="header-currency-field">
+            BRL
+          </span>
+        </h4>
       </header>
     );
   }
