@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { array, bool } from 'prop-types';
 import Divisions from '../componenens/Divisions';
 import Header from '../componenens/Header';
-import { actionCreators } from '../redux/actions/coinsActions';
+import { actionCreators } from '../redux/actions/walletActions';
 
 class Wallet extends React.Component {
   constructor() {
@@ -35,7 +35,7 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { siglas, isLoading } = this.props; // prop de coinsReducers
+    const { currencies, isLoading } = this.props; // prop de coinsReducers
     const { valor, moeda, metodoDePagamento, tag, descricao } = this.state;
     const metodosDePagamento = ['Dinheiro', 'Cartão de Crédito', 'Cartão de Débito'];
     const tags = ['Alimentacao', 'Lazer', 'Trabalho', 'Transporte', 'Saúde '];
@@ -62,7 +62,7 @@ class Wallet extends React.Component {
       </option>
     ));
 
-    const moedas = siglas.map((item) => (
+    const moedas = currencies.map((item) => (
       <option key={ item } value={ moeda }>{ item }</option>
     ));
 
@@ -71,7 +71,10 @@ class Wallet extends React.Component {
       <div>
         <div>
           <Header />
-          <form onSubmit={ (e) => this.handleSubmit(e) } className="container_choice align_center_around">
+          <form
+            onSubmit={ (e) => this.handleSubmit(e) }
+            className="container_choice align_center_around"
+          >
             <label htmlFor="valor">
               Valor
               <input
@@ -113,14 +116,14 @@ class Wallet extends React.Component {
   }
 }
 
-const mapStateToProps = ({ coins: { siglas, isLoading } }) => ({
-  siglas,
+const mapStateToProps = ({ wallet: { currencies, isLoading } }) => ({
+  currencies,
   isLoading,
 });
 
 export default connect(mapStateToProps, null)(Wallet);
 
 Wallet.propTypes = {
-  siglas: PropTypes.array,
-  isLoading: PropTypes.bool,
+  currencies: array,
+  isLoading: bool,
 }.isRequired;

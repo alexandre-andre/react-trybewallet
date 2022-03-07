@@ -1,8 +1,9 @@
 import React from 'react';
 import './Login.css';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { actionCreators } from '../redux/actions';
+import { object } from 'prop-types';
+import validator from 'validator'; // biblioteca de validacao
+import { actionCreators } from '../redux/actions/userActions';
 
 class Login extends React.Component {
   constructor() {
@@ -19,14 +20,14 @@ class Login extends React.Component {
   }
 
   validLoginButton = () => {
-    const { email, password, isDisabled } = this.state; // pega os inputs em tempo real
-    const defaultEmail = 'alguem@alguem.com';
+    const { email, password } = this.state; // pega os inputs em tempo real
+    const isValidEmail = validator.isEmail(email); // verifica se o state eh um email valido
     const minLength = 6;
 
-    if (email === defaultEmail && password.length >= minLength) {
-      this.setState({ isDisabled: !isDisabled }); // se pah
+    if (isValidEmail && password.length >= minLength) {
+      this.setState({ isDisabled: false }); // se pah
     } else {
-      this.setState({ isDisabled });
+      this.setState({ isDisabled: true });
     }
   }
 
@@ -82,5 +83,5 @@ class Login extends React.Component {
 export default connect()(Login);
 
 Login.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any),
+  history: object,
 }.isRequired;
