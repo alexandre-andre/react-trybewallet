@@ -9,16 +9,13 @@ const metodosDePagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débi
 const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
 class Wallet extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 0,
-      currency: 'USD',
-      method: metodosDePagamento[0],
-      tag: tags[0],
-      description: '',
-    };
-  }
+  state = {
+    value: 0,
+    currency: 'USD',
+    method: metodosDePagamento[0],
+    tag: tags[0],
+    description: '',
+  };
 
   componentDidMount() { // faz chamada d requisicao e monta o comp pela primeia vez
     const { dispatch } = this.props;
@@ -48,7 +45,7 @@ class Wallet extends React.Component {
 
   render() {
     const { currencies, isLoading } = this.props; // prop de coinsReducers
-    const { value, description, currency, method, tag } = this.state;
+    const { value, description } = this.state;
 
     if (isLoading) return <h1>Carregando ...</h1>;
     return (
@@ -59,7 +56,7 @@ class Wallet extends React.Component {
             className="container_choice align_center_around"
           >
             <label htmlFor="value">
-              value:
+              Valor:
               <input
                 id="value"
                 type="number"
@@ -70,7 +67,7 @@ class Wallet extends React.Component {
               />
             </label>
             <label htmlFor="currency">
-              currency:
+              Moeda:
               <select
                 id="currency"
                 data-testid="currency-input"
@@ -141,7 +138,8 @@ class Wallet extends React.Component {
   }
 }
 
-const mapStateToProps = ({ wallet: { currencies, allCoins, isLoading, id, expenses } }) => ({
+const mapStateToProps = ({ wallet:
+  { currencies, allCoins, isLoading, id, expenses } }) => ({
   allCoins,
   currencies,
   isLoading,

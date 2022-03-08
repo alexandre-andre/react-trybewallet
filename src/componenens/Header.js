@@ -12,10 +12,6 @@ class Header extends React.Component {
       return acc;
     }, 0) : 0;
 
-    // const formatedExpenseToBRL = expense.toLocaleString(
-    //   'pt-br', { style: 'currency', currency: 'BRL' },
-    // );
-
     return (
       <header className="header">
         <img

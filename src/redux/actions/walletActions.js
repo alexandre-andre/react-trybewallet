@@ -33,6 +33,7 @@ const fetchCoins = () => async (dispatch) => {
 
   try { // deu certo
     const coins = await getCoins(); // descarta a primeira posicao do array
+    delete coins.USDT;
     dispatch(requestSuccess(coins));
   } catch (error) { // deu errado
     dispatch(requestFailure(error.message));
