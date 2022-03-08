@@ -6,10 +6,15 @@ import './Header.css';
 class Header extends React.Component {
   render() {
     const { email, expenses } = this.props;
-    const expense = expenses.length > 0 ? expenses : 0;
-    const formatedExpenseToBRL = expense.toLocaleString(
-      'pt-br', { style: 'currency', currency: 'BRL' },
-    );
+    const expense = expenses.length ? expenses.reduce((acc, { value, currency,
+      exchangeRates: { [currency]: { ask } } }) => {
+      acc += +value * +ask;
+      return acc;
+    }, 0) : 0;
+
+    // const formatedExpenseToBRL = expense.toLocaleString(
+    //   'pt-br', { style: 'currency', currency: 'BRL' },
+    // );
 
     return (
       <header className="header">
@@ -21,7 +26,7 @@ class Header extends React.Component {
           { `Email: ${email}` }
         </h4>
         <h4 data-testid="total-field">
-          { `Despesa Total: R$ ${formatedExpenseToBRL} `}
+          { `Despesa Total: R$ ${expense.toFixed(2) || 0} `}
           <span data-testid="header-currency-field">
             BRL
           </span>

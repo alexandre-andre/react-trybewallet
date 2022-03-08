@@ -7,19 +7,20 @@ const INITIAL_STATE = {
   isLoagind: true,
   allCoins: {},
   errorMessage: '',
+  id: 0,
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  // case actionTypes.SEND_CURRENCIES:
-  //   return {
-  //     ...state,
-  //     currencies: [...state.currencies, action.payload], // espalha o array currencies e o action.currencies
-  //   };
-  case actionTypes.SEND_EXPENSES:
+  case actionTypes.UPDATE_ID:
     return {
       ...state,
-      expenses: state.expenses.concat(action.payload), // pega o array e concatena action.payload nele
+      id: state.id + 1,
+    };
+  case actionTypes.UPDATE_EXPENSES:
+    return {
+      ...state,
+      expenses: action.payload, // pega o array e concatena action.payload nele
     };
   case actionTypes.REQUEST_BEGIN: // inicio da requisicao
     return {
@@ -30,7 +31,7 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       isLoagind: false,
-      allCoins: { ...state.allCoins, ...action.payload },
+      allCoins: action.payload,
       currencies: Object.keys(action.payload), // cria um array com as chaves do objeto
     };
   case actionTypes.REQUEST_FAILURE: // requisicao nao ok

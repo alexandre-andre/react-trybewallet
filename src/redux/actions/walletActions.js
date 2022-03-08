@@ -2,14 +2,16 @@ import getCoins from '../../services/requestApi';
 
 // ACTION TYPES
 const SEND_CURRENCIES = 'SEND_CURRENCIES';
-const SEND_EXPENSES = 'SEND_EXPENSES';
+const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
+const UPDATE_ID = 'UPDATE_ID';
 const REQUEST_BEGIN = 'REQUEST_BEGIN';
 const REQUEST_SUCCESS = 'REQUEST_SUCCESS';
 const REQUEST_FAILURE = 'REQUEST_FAILURE';
 
 export const actionTypes = {
   SEND_CURRENCIES,
-  SEND_EXPENSES,
+  UPDATE_EXPENSES,
+  UPDATE_ID,
   REQUEST_BEGIN,
   REQUEST_SUCCESS,
   REQUEST_FAILURE,
@@ -17,7 +19,8 @@ export const actionTypes = {
 
 // ACTION CREATORS
 const sendCurrencies = (currencies) => ({ type: SEND_CURRENCIES, payload: currencies });
-const sendExpenses = (expenses) => ({ type: SEND_EXPENSES, payload: expenses });
+const updateExpenses = (expenses) => ({ type: UPDATE_EXPENSES, payload: expenses });
+const updateId = () => ({ type: UPDATE_ID });
 
 const requestBegin = () => ({ type: REQUEST_BEGIN }); // faz a requisicao a api
 const requestSuccess = (data) => ({ type: REQUEST_SUCCESS, payload: data }); // em caso de sucesso pega os dados
@@ -38,6 +41,7 @@ const fetchCoins = () => async (dispatch) => {
 
 export const actionCreators = {
   sendCurrencies,
-  sendExpenses,
+  updateExpenses,
+  updateId,
   fetchCoins,
 };
