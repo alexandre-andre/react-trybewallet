@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { array, bool, number, object } from 'prop-types';
-import Divisions from '../componenens/Divisions';
+import Table from '../componenens/Table';
 import Header from '../componenens/Header';
 import { actionCreators } from '../redux/actions/walletActions';
 
@@ -131,7 +131,7 @@ class Wallet extends React.Component {
               Adicionar despesa
             </button>
           </form>
-          <Divisions />
+          <Table />
         </div>
       </div>
     );

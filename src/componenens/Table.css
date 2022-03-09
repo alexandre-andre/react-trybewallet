@@ -1,12 +1,16 @@
-.container_guides {
+.container_tr_table {
   background-color: rgba(0, 0, 0, 0.768);
   border: 3px solid blue;
   color: white;
-  padding: 10px 0;
-}
-
-.align_center_between {
-  align-items: center;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
+}
+
+.top {
+  text-align: center;
+}
+
+table > thead > tr > th {
+  flex: 1;
 }
