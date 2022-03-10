@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css';
 import { array } from 'prop-types';
+import { actionCreators } from '../redux/actions/walletActions';
 
 class Table extends Component {
+  handleRemoveExpense = (expense) => {
+    const { expenses, dispatch } = this.props;
+    const filtered = expenses.filter((element) => element !== expense);
+    dispatch(actionCreators.updateExpenses(filtered));
+  }
+
   render() {
+    const { expenses } = this.props;
     const guides = [
       'Descrição',
       'Tag',
@@ -16,8 +24,6 @@ class Table extends Component {
       'Moeda de conversão',
       'Editar/Excluir',
     ];
-
-    const { expenses } = this.props;
 
     return (
       <table border="1" width="100%">
@@ -44,7 +50,13 @@ class Table extends Component {
                   <td className="top">Real</td>
                   <td className="top">
                     <button type="button">Editar</button>
-                    <button type="button">Excluir</button>
+                    <button
+                      type="button"
+                      data-testid="delete-btn"
+                      onClick={ () => this.handleRemoveExpense(item) }
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
               );
