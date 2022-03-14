@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Table.css';
 import { array } from 'prop-types';
-import { actionCreators } from '../redux/actions/walletActions';
+import { actionCreators } from '../actions/walletActions';
 
 class Table extends Component {
   handleRemoveExpense = (expense) => {

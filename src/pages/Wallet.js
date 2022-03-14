@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { array, bool, number, object } from 'prop-types';
 import Table from '../componenens/Table';
 import Header from '../componenens/Header';
-import { actionCreators } from '../redux/actions/walletActions';
+import { actionCreators } from '../actions/walletActions';
 
 const metodosDePagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];

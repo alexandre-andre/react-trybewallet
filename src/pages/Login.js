@@ -3,7 +3,7 @@ import './Login.css';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import validator from 'validator'; // biblioteca de validacao
-import { actionCreators } from '../redux/actions/userActions';
+import { actionCreators } from '../actions/userActions';
 
 class Login extends React.Component {
   constructor() {

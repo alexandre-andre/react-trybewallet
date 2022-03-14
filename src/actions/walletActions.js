@@ -1,4 +1,4 @@
-import getCoins from '../../services/requestApi';
+import getCoins from '../services/requestApi';
 
 // ACTION TYPES
 const SEND_CURRENCIES = 'SEND_CURRENCIES';
