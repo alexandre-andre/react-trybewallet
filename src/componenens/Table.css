@@ -8,15 +8,14 @@
 }
 
 .top {
+  align-items: center;
   color: white;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
   flex: 1;
+  justify-content: space-around;
 }
 
 table > thead > tr > th {
-  /* display: flex; */
   flex: 1;
 }
 

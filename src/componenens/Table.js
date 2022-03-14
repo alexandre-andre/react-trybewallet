@@ -11,6 +11,12 @@ class Table extends Component {
     dispatch(actionCreators.updateExpenses(filtered));
   }
 
+  handleEditExpense = (expense) => {
+    console.log(expense);
+    // const { dispatch } = this.props;
+    // dispatch(actionCreators.updateExpenses(expense));
+  }
+
   render() {
     const { expenses } = this.props;
     const guides = [
@@ -49,7 +55,13 @@ class Table extends Component {
                   <td className="top">{ (currency * +item.value).toFixed(2) }</td>
                   <td className="top">Real</td>
                   <td className="top">
-                    <button type="button">Editar</button>
+                    <button
+                      type="button"
+                      data-testid="edit-btn"
+                      onClick={ () => this.handleEditExpense(item) }
+                    >
+                      Editar
+                    </button>
                     <button
                       type="button"
                       data-testid="delete-btn"
