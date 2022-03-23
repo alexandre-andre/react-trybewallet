@@ -7,15 +7,16 @@ import { actionCreators } from '../actions/walletActions';
 
 const metodosDePagamento = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const tags = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+const defaultState = {
+  value: 0,
+  currency: 'USD',
+  method: metodosDePagamento[0],
+  tag: tags[0],
+  description: '',
+};
 
 class Wallet extends React.Component {
-  state = {
-    value: 0,
-    currency: 'USD',
-    method: metodosDePagamento[0],
-    tag: tags[0],
-    description: '',
-  };
+  state = { ...defaultState };
 
   componentDidMount() { // faz chamada d requisicao e monta o comp pela primeia vez
     const { dispatch } = this.props;
@@ -34,17 +35,20 @@ class Wallet extends React.Component {
     dispatch(actionCreators.updateId()); // atualiza o iod antes de jogar no obj
     const currencyExpense = { id, ...this.state, exchangeRates: allCoins };
     dispatch(actionCreators.updateExpenses([...expenses, currencyExpense]));
-    this.setState({
-      value: 0,
-      currency: 'USD',
-      method: metodosDePagamento[0],
-      tag: tags[0],
-      description: '',
-    });
+    this.setState({ ...defaultState });
+  }
+
+  saveEditedExpense = () => {
+    const { dispatch, expenses, editing } = this.props;
+    const arrayWithEditedExpense = expenses.map(
+      (expense) => (expense === editing ? { ...expense, ...this.state } : expense),
+    );
+    dispatch(actionCreators.updateExpenses([...arrayWithEditedExpense]));
+    this.setState({ ...defaultState });
   }
 
   render() {
-    const { currencies, isLoading } = this.props; // prop de coinsReducers
+    const { currencies, isLoading, isEdit } = this.props; // prop de coinsReducers
     const { value, description } = this.state;
 
     if (isLoading) return <h1>Carregando ...</h1>;
@@ -125,10 +129,12 @@ class Wallet extends React.Component {
               />
             </label>
             <button
-              onClick={ (e) => this.handleSubmit(e) }
+              onClick={
+                isEdit ? () => this.saveEditedExpense() : (e) => this.handleSubmit(e)
+              }
               type="button"
             >
-              Adicionar despesa
+              { isEdit ? 'Editar despesa' : 'Adicionar despesa' }
             </button>
           </form>
           <Table />
@@ -139,12 +145,14 @@ class Wallet extends React.Component {
 }
 
 const mapStateToProps = ({ wallet:
-  { currencies, allCoins, isLoading, id, expenses } }) => ({
+  { currencies, allCoins, isLoading, id, expenses, isEdit, editing } }) => ({
   allCoins,
   currencies,
   isLoading,
   id,
   expenses,
+  isEdit,
+  editing,
 });
 
 export default connect(mapStateToProps, null)(Wallet);
@@ -155,4 +163,6 @@ Wallet.propTypes = {
   isLoading: bool,
   id: number,
   expenses: array,
+  isEdit: bool,
+  editing: object,
 }.isRequired;

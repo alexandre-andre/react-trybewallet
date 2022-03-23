@@ -12,9 +12,8 @@ class Table extends Component {
   }
 
   handleEditExpense = (expense) => {
-    console.log(expense);
-    // const { dispatch } = this.props;
-    // dispatch(actionCreators.updateExpenses(expense));
+    const { dispatch } = this.props;
+    dispatch(actionCreators.isEdit(expense));
   }
 
   render() {

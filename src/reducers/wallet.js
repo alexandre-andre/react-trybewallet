@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   allCoins: {},
   errorMessage: '',
   id: 0,
+  isEdit: false,
+  editing: {},
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -15,12 +17,20 @@ const wallet = (state = INITIAL_STATE, action) => {
   case actionTypes.UPDATE_ID:
     return {
       ...state,
+      isEdit: false,
       id: state.id + 1,
     };
   case actionTypes.UPDATE_EXPENSES:
     return {
       ...state,
+      isEdit: false,
       expenses: action.payload, // pega o array e concatena action.payload nele
+    };
+  case actionTypes.IS_EDIT:
+    return {
+      ...state,
+      isEdit: true,
+      editing: action.payload,
     };
   case actionTypes.REQUEST_BEGIN: // inicio da requisicao
     return {
