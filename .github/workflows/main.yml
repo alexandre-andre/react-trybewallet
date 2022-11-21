@@ -25,7 +25,7 @@ jobs:
       - name: Fetch ESLint evaluator
         uses: actions/checkout@v2
         with:
-          repository: betrybe/eslint-linter-action
+          repository: wallet/eslint-linter-action
           ref: v3
           token: ${{ secrets.GIT_HUB_PAT }}
           path: .github/actions/eslint-evaluator
@@ -33,7 +33,7 @@ jobs:
       - name: Fetch StyleLint evaluator
         uses: actions/checkout@v2
         with:
-          repository: betrybe/stylelint-linter-action
+          repository: wallet/stylelint-linter-action
           ref: v2.1
           token: ${{ secrets.GIT_HUB_PAT }}
           path: .github/actions/stylelint-evaluator
@@ -41,7 +41,7 @@ jobs:
       - name: Fetch Blocked Files Checkout action
         uses: actions/checkout@v2
         with:
-          repository: betrybe/blocked-files-checkout-action
+          repository: wallet/blocked-files-checkout-action
           ref: v2
           token: ${{ secrets.GIT_HUB_PAT }}
           path: .github/actions/blocked-files-checkout
@@ -49,7 +49,7 @@ jobs:
       - name: Fetch React Scripts evaluator
         uses: actions/checkout@v2
         with:
-          repository: betrybe/react-scripts-evaluator-action
+          repository: wallet/react-scripts-evaluator-action
           ref: v6
           token: ${{ secrets.GIT_HUB_PAT }}
           path: .github/actions/react-scripts-evaluator
@@ -57,7 +57,7 @@ jobs:
       - name: Fetch Store evaluation
         uses: actions/checkout@v2
         with:
-          repository: betrybe/store-evaluation-action
+          repository: wallet/store-evaluation-action
           ref: v4
           token: ${{ secrets.GIT_HUB_PAT }}
           path: .github/actions/store-evaluation
